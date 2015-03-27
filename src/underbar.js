@@ -1,4 +1,5 @@
 // problem set written by Hack Reactor. challenge files cloned on 3/27/2015 for educational purposes.
+// CHALLENGES AND FUNCTIONS COMPLETED BY: github.com/crisxian
 
 (function() {
   'use strict';
@@ -9,6 +10,7 @@
   // seem very useful, but remember it--if a function needs to provide an
   // iterator when the user does not pass one in, this will be handy.
   _.identity = function(val) {
+    return val;
   };
 
   /**
@@ -39,6 +41,7 @@
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
+    return n === undefined ? array[array.length-1] : n === 0 ? [] : array.slice(-n);
   };
 
   // Call iterator(value, key, collection) for each element of collection.
