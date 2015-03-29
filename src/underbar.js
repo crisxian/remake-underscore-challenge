@@ -288,6 +288,18 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var mem = {};
+    return function(){
+      var hash = func.name;
+      for (var i = 0; i < arguments.length; i++){
+        hash = hash + arguments[i];
+      }
+      
+      if(!mem.hasOwnProperty(hash)) {
+        mem[hash] = func.apply(this, arguments);
+      }
+      return mem[hash];
+    }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
