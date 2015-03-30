@@ -354,7 +354,10 @@
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
     return _.map(collection, function(value){
-      return functionOrKey.apply(value, args);
+      if(typeof value[functionOrKey] === 'function'){
+        return value[functionOrKey].apply(value, args);
+      }
+      else return functionOrKey.apply(value, args);
     });
   };
 
