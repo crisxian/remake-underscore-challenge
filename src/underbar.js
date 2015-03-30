@@ -366,6 +366,22 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
+    return collection.sort(function(a,b){
+      // both undefined
+      if (!a&&!b) { return 0 }
+      // get values
+      if(typeof iterator === 'function'){
+        a = iterator(a);
+        b = iterator(b);
+      } else if (typeof iterator === 'string'){
+        a = a[iterator];
+        b = b[iterator];
+      }
+      // compare
+      if (a === b) { return 0 } 
+      else if (a<b || !b) {return -1}
+      else if (b<a || !a) {return 1}
+    });
   };
 
   // Zip together two or more arrays with elements of the same index
