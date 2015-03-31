@@ -309,7 +309,7 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
-      var supplied = [];
+    var supplied = [];
     for(var i = 2; i < arguments.length; i++){
       supplied.push(arguments[i]);
     }
@@ -471,5 +471,16 @@
   //
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
+    var stop = false;
+
+    return function(){
+      if(stop === false) {
+        _.delay(function(){
+          stop = false;
+        }, wait)
+        func();
+        stop = true;
+      }
+    }
   };
 }());
